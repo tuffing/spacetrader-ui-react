@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import { RootState } from '../../app/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUserName, setAccessToken, authenticate } from './userSlice';
-import styles from './User.module.css';
+import userStyles from './User.module.css';
+import styles from '../../Styles.module.css';
 
 export function UserLogin() {
-	const token = useSelector((state: RootState) => state.user.token);
-	const error = useSelector((state: RootState) => state.user.error);
-	const status = useSelector((state: RootState) => state.user.status);
+	const token = useSelector((state: RootState) => state.userReducer.token);
+	const error = useSelector((state: RootState) => state.userReducer.error);
+	const status = useSelector((state: RootState) => state.userReducer.status);
 	const dispatch = useDispatch();
 	const [userName, setUserName] = useState('');
 
