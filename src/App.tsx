@@ -1,7 +1,7 @@
 import React from 'react';
 import { RootState } from './app/store';
 import logo from './logo.svg';
-import { UserLogin } from './features/user/UserLogin';
+import UserLogin from './features/user/UserLogin';
 import { UserPanel } from './features/user/UserPanel';
 import './App.css';
 import { useSelector } from 'react-redux';

@@ -22,10 +22,8 @@ const successBody: AuthBody = {
 };
 
 const errorBody = {
-	error: {
-		message: 'Username has already been claimed.',
-		code: 40901,
-	},
+	message: 'Username has already been claimed.',
+	code: 40901,
 };
 
 describe('User reducer', () => {
@@ -53,7 +51,7 @@ describe('User reducer', () => {
 		expect(userReducer(initialState, { type: authenticate.rejected, error: errorBody })).toEqual({
 			...initialState,
 			status: 'failed',
-			error: errorBody.error.message,
+			error: errorBody.message,
 		});
 	});
 });

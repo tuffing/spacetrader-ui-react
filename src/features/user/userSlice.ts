@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { AppThunk, RootState } from '../../app/store';
-import { AuthBody, authCall } from './api';
+import { authCall } from './api';
 
 export interface UserState {
 	username: string;

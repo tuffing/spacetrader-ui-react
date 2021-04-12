@@ -5,7 +5,7 @@ import { setUserName, setAccessToken, authenticate } from './userSlice';
 import userStyles from './User.module.css';
 import styles from '../../Styles.module.css';
 
-export function UserLogin() {
+export default function UserLogin() {
 	const token = useSelector((state: RootState) => state.userReducer.token);
 	const error = useSelector((state: RootState) => state.userReducer.error);
 	const status = useSelector((state: RootState) => state.userReducer.status);

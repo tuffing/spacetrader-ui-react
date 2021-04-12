@@ -2,7 +2,6 @@
 export const authCall = async (username: string) => {
 	const response = await fetch(`https://api.spacetraders.io/users/${username}/token`, {
 		method: 'POST',
-		//mode: 'no-cors', // no-cors, *cors, same-origin
 		cache: 'no-cache',
 		credentials: 'same-origin', // include, *same-origin, omit
 		headers: {
