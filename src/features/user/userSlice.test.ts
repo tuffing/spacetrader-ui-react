@@ -1,14 +1,13 @@
 import thunk from 'redux-thunk';
 import { initialState } from './userSlice';
-import { AuthBody } from './api';
+import { AuthTokenBody } from '../../api/user';
 
 const middlewares = [thunk];
 
 import userReducer, { authenticate, setUserName, setAccessToken } from './userSlice';
+import { Status } from '../../api/api';
 
-// @TODO Test the auth thunk directly! https://stackoverflow.com/questions/62253049/testing-createasyncthunk-redux-toolkit-jest
-
-const successBody: AuthBody = {
+const successBody: AuthTokenBody = {
 	token: 'd816ae03-5cc4-46b7-9215-5978a71a8149',
 	user: {
 		id: 'cklxd8vpr301164iw89x8186uts',
@@ -21,9 +20,16 @@ const successBody: AuthBody = {
 	},
 };
 
-const errorBody = {
+const errorBodyFromCode = {
 	message: 'Username has already been claimed.',
 	code: 40901,
+};
+
+const errorBodyUserExists = {
+	error: {
+		message: 'Username has already been claimed.',
+		code: 40901,
+	},
 };
 
 describe('User reducer', () => {
@@ -47,11 +53,20 @@ describe('User reducer', () => {
 		});
 	});
 
+	it('auth should handle existing user', () => {
+		//yes, this error will return as 'fulfilled'.
+		expect(userReducer(initialState, { type: authenticate.fulfilled, payload: errorBodyUserExists })).toEqual({
+			...initialState,
+			status: Status.failed,
+			error: errorBodyUserExists.error.message,
+		});
+	});
+
 	it('auth should handle rejection', () => {
-		expect(userReducer(initialState, { type: authenticate.rejected, error: errorBody })).toEqual({
+		expect(userReducer(initialState, { type: authenticate.rejected, error: errorBodyFromCode })).toEqual({
 			...initialState,
 			status: 'failed',
-			error: errorBody.message,
+			error: errorBodyFromCode.message,
 		});
 	});
 });

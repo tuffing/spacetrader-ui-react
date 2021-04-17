@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { RootState } from '../../app/store';
+import { Status } from '../../api/api';
 import { useSelector, useDispatch } from 'react-redux';
-import { setUserName, setAccessToken, authenticate } from './userSlice';
+import { authenticate } from './userSlice';
 import userStyles from './User.module.css';
 import styles from '../../Styles.module.css';
 
@@ -14,21 +15,30 @@ export default function UserLogin() {
 
 	return (
 		<div>
-			<div>Auth token: {token ?? '[not set]'}</div>
+			<div>
+				Auth token: <span data-testid="token">{token ?? '[not set]'}</span>
+			</div>
 			<div>Errors: {error ?? '[none]'}</div>
 
 			<div className={styles.row}>
 				<input
+					data-testid="UserName"
 					className={styles.textbox}
 					aria-label="User name"
 					value={userName}
 					onChange={(e) => setUserName(e.target.value)}
 				/>
-				<button className={styles.button} disabled={!userName} onClick={() => dispatch(authenticate(userName))}>
+				<button
+					data-testid="LoginSubmit"
+					className={styles.button}
+					disabled={!userName || status == Status.loading}
+					onClick={() => dispatch(authenticate(userName))}
+				>
 					Login
 				</button>
 			</div>
 			<div>Auth status: {status}</div>
+			<div>Username: {userName}</div>
 		</div>
 	);
 }

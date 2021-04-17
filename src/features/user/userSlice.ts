@@ -1,23 +1,24 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { authCall } from './api';
+import { Status } from '../../api/api';
+import { requestToken } from '../../api/user';
 
 export interface UserState {
 	username: string;
 	credits: number;
 	token?: string;
-	status: 'idle' | 'loading' | 'succeeded' | 'failed';
+	status: Status;
 	error?: string;
 }
 
 export const initialState: UserState = {
 	username: '',
 	credits: 0,
-	status: 'idle',
+	status: Status.idle,
 };
 
 // fetch the user token
 export const authenticate = createAsyncThunk('user/authenticate', async (username: string) => {
-	return authCall(username);
+	return requestToken(username);
 });
 
 export const userSlice = createSlice({
@@ -34,28 +35,37 @@ export const userSlice = createSlice({
 		setCredits: (state, action: PayloadAction<number>) => {
 			state.credits = action.payload;
 		},
+		setStatus: (state, action: PayloadAction<Status>) => {
+			state.status = action.payload;
+		},
 	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(authenticate.pending, (state, action) => {
-				state.status = 'loading';
+				state.status = Status.loading;
 			})
 			.addCase(authenticate.fulfilled, (state, action) => {
+				if ('error' in action.payload) {
+					//validation errors etc return as 200s. So validation here..
+					state.error = action.payload.error.message;
+					state.status = Status.failed;
+					return;
+				}
+
 				state.token = action.payload.token;
 				state.credits = action.payload.user.credits;
 				state.username = action.payload.user.username;
 
-				state.status = 'idle';
+				state.status = Status.idle;
 			})
 			.addCase(authenticate.rejected, (state, action) => {
-				state.status = 'failed';
+				state.status = Status.failed;
 				if ('message' in action.error) state.error = action.error.message;
 				else state.error = 'undefined error';
-				//else if ('error' in action.error) state.error = action.error.error.message;
 			});
 	},
 });
 
-export const { setUserName, setAccessToken, setCredits } = userSlice.actions;
+export const { setUserName, setAccessToken, setCredits, setStatus } = userSlice.actions;
 
 export default userSlice.reducer;

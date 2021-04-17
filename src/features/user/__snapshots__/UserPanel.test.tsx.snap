@@ -1,89 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`User Login Component User snapshot 1`] = `
+exports[`renders User panel 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        <div>
-          Auth token: 
-          <span
-            data-testid="token"
-          >
-            [not set]
-          </span>
-        </div>
-        <div>
-          Errors: 
-          [none]
-        </div>
+      <div
+        class="infoPanel"
+      >
         <div
           class="row"
         >
-          <input
-            aria-label="User name"
-            class="textbox"
-            data-testid="UserName"
-            value=""
+          <div
+            class="username"
           />
-          <button
-            class="button"
-            data-testid="LoginSubmit"
-            disabled=""
+          <div
+            aria-label="Credits"
+            class="userData"
           >
-            Login
-          </button>
-        </div>
-        <div>
-          Auth status: 
-          idle
-        </div>
-        <div>
-          Username: 
-          
+            Credits 
+            0
+          </div>
         </div>
       </div>
     </div>
   </body>,
   "container": <div>
-    <div>
-      <div>
-        Auth token: 
-        <span
-          data-testid="token"
-        >
-          [not set]
-        </span>
-      </div>
-      <div>
-        Errors: 
-        [none]
-      </div>
+    <div
+      class="infoPanel"
+    >
       <div
         class="row"
       >
-        <input
-          aria-label="User name"
-          class="textbox"
-          data-testid="UserName"
-          value=""
+        <div
+          class="username"
         />
-        <button
-          class="button"
-          data-testid="LoginSubmit"
-          disabled=""
+        <div
+          aria-label="Credits"
+          class="userData"
         >
-          Login
-        </button>
-      </div>
-      <div>
-        Auth status: 
-        idle
-      </div>
-      <div>
-        Username: 
-        
+          Credits 
+          0
+        </div>
       </div>
     </div>
   </div>,
