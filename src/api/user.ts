@@ -1,4 +1,4 @@
-import { url } from './api';
+import { url, performPostRequest } from './api';
 
 export interface AuthTokenBody {
 	token: string;
@@ -21,14 +21,7 @@ export interface AuthTokenBodyFail {
 }
 
 export const requestToken = async (username: string) => {
-	const response = await fetch(`${url}/users/${username}/token`, {
-		method: 'POST',
-		cache: 'no-cache',
-		credentials: 'same-origin', // include, *same-origin, omit
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	});
+	const response = await performPostRequest(`users/${username}/token`);
 
-	return response.json();
+	return response;
 };

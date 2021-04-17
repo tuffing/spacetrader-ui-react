@@ -14,33 +14,29 @@ export default function UserLogin() {
 	const [userName, setUserName] = useState('');
 
 	return (
-		<div>
-			<div>
-				Auth token: <span data-testid="token">{token ?? '[not set]'}</span>
+		<div className={styles.container}>
+			<div className={styles.header}>Welcome to Space Traders</div>
+			<input
+				data-testid="UserName"
+				className={styles.textbox}
+				aria-label="User name"
+				placeholder="User name"
+				value={userName}
+				onChange={(e) => setUserName(e.target.value)}
+			/>
+			<button
+				data-testid="LoginSubmit"
+				className={styles.button}
+				disabled={!userName || status == Status.loading}
+				onClick={() => dispatch(authenticate(userName))}
+			>
+				Get Started
+			</button>
+			{error ? <div className={styles.error}>{error}</div> : <></>}
+			{token ? <span data-testid="token">{token}</span> : <></>}
+			<div className={styles.creditNote}>
+				Implementation of <a href="https://spacetraders.io">spacetraders.io</a>
 			</div>
-			<div>
-				Errors: <span>{error ?? '[none]'}</span>
-			</div>
-
-			<div className={styles.row}>
-				<input
-					data-testid="UserName"
-					className={styles.textbox}
-					aria-label="User name"
-					value={userName}
-					onChange={(e) => setUserName(e.target.value)}
-				/>
-				<button
-					data-testid="LoginSubmit"
-					className={styles.button}
-					disabled={!userName || status == Status.loading}
-					onClick={() => dispatch(authenticate(userName))}
-				>
-					Login
-				</button>
-			</div>
-			<div>Auth status: {status}</div>
-			<div>Username: {userName}</div>
 		</div>
 	);
 }

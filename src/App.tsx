@@ -3,7 +3,7 @@ import { RootState } from './app/store';
 import logo from './logo.svg';
 import UserLogin from './features/user/UserLogin';
 import { UserPanel } from './features/user/UserPanel';
-import './App.css';
+import styles from './App.module.css';
 import { useSelector } from 'react-redux';
 
 function App() {
@@ -11,18 +11,15 @@ function App() {
 
 	if (!token) {
 		return (
-			<div className="App">
-				<header className="App-header">{<UserLogin />}</header>
-				<div>ABC DEF GHI</div>
+			<div className={styles.app}>
+				<header className={styles.appHeader}>{<UserLogin />}</header>
 			</div>
 		);
 	}
 
 	return (
-		<div className="App">
-			<div>
-				<UserPanel />
-			</div>
+		<div className={styles.app}>
+			<UserPanel />
 		</div>
 	);
 }

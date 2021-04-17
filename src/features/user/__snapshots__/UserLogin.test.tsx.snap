@@ -5,68 +5,19 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        <div>
-          Auth token: 
-          <span
-            data-testid="token"
-          />
-        </div>
-        <div>
-          Errors: 
-          <span>
-            [none]
-          </span>
-        </div>
-        <div
-          class="row"
-        >
-          <input
-            aria-label="User name"
-            class="textbox"
-            data-testid="UserName"
-            value=""
-          />
-          <button
-            class="button"
-            data-testid="LoginSubmit"
-            disabled=""
-          >
-            Login
-          </button>
-        </div>
-        <div>
-          Auth status: 
-          idle
-        </div>
-        <div>
-          Username: 
-          
-        </div>
-      </div>
-    </div>
-  </body>,
-  "container": <div>
-    <div>
-      <div>
-        Auth token: 
-        <span
-          data-testid="token"
-        />
-      </div>
-      <div>
-        Errors: 
-        <span>
-          [none]
-        </span>
-      </div>
       <div
-        class="row"
+        class="container"
       >
+        <div
+          class="header"
+        >
+          Welcome to Space Traders
+        </div>
         <input
           aria-label="User name"
           class="textbox"
           data-testid="UserName"
+          placeholder="User name"
           value=""
         />
         <button
@@ -74,16 +25,53 @@ Object {
           data-testid="LoginSubmit"
           disabled=""
         >
-          Login
+          Get Started
         </button>
+        <div
+          class="creditNote"
+        >
+          Implementation of 
+          <a
+            href="https://spacetraders.io"
+          >
+            spacetraders.io
+          </a>
+        </div>
       </div>
-      <div>
-        Auth status: 
-        idle
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="container"
+    >
+      <div
+        class="header"
+      >
+        Welcome to Space Traders
       </div>
-      <div>
-        Username: 
-        
+      <input
+        aria-label="User name"
+        class="textbox"
+        data-testid="UserName"
+        placeholder="User name"
+        value=""
+      />
+      <button
+        class="button"
+        data-testid="LoginSubmit"
+        disabled=""
+      >
+        Get Started
+      </button>
+      <div
+        class="creditNote"
+      >
+        Implementation of 
+        <a
+          href="https://spacetraders.io"
+        >
+          spacetraders.io
+        </a>
       </div>
     </div>
   </div>,
