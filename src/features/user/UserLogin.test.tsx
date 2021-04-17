@@ -5,13 +5,14 @@ import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import { store } from '../../app/store';
 import UserLogin from './UserLogin';
-import { setStatus } from './userSlice';
+import { setStatus, setAccessToken } from './userSlice';
 import { Status } from '../../api/api';
-import { AuthTokenSuccessBody } from '../../api/mockServer/responses/user';
+import { AuthTokenSuccessBody, AuthTokenErrorUserTakenBody, AuthFailParams } from '../../api/mockServer/responses/user';
 
 describe('User Login Component', () => {
 	beforeEach(() => {
 		store.dispatch(setStatus(Status.idle));
+		store.dispatch(setAccessToken(''));
 	});
 
 	it('User snapshot', () => {
@@ -66,7 +67,16 @@ describe('User Login Component', () => {
 	});
 
 	it('Login Button attempts login but username is taken', async () => {
-		// @TODO set up mocks etc to make the username is taken error test doable
-		//..stub
+		const login = render(
+			<Provider store={store}>
+				<UserLogin />
+			</Provider>
+		);
+
+		userEvent.type(screen.getByTestId('UserName'), AuthFailParams.usernameTaken.toString());
+		userEvent.click(screen.getByTestId('LoginSubmit'));
+		expect(await screen.findByText(AuthTokenErrorUserTakenBody.error.message)).toBeInTheDocument();
 	});
+
+	// @todo connection error?
 });

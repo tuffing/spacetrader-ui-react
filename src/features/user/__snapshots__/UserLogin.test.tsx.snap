@@ -10,13 +10,13 @@ Object {
           Auth token: 
           <span
             data-testid="token"
-          >
-            [not set]
-          </span>
+          />
         </div>
         <div>
           Errors: 
-          [none]
+          <span>
+            [none]
+          </span>
         </div>
         <div
           class="row"
@@ -52,13 +52,13 @@ Object {
         Auth token: 
         <span
           data-testid="token"
-        >
-          [not set]
-        </span>
+        />
       </div>
       <div>
         Errors: 
-        [none]
+        <span>
+          [none]
+        </span>
       </div>
       <div
         class="row"

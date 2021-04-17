@@ -18,7 +18,9 @@ export default function UserLogin() {
 			<div>
 				Auth token: <span data-testid="token">{token ?? '[not set]'}</span>
 			</div>
-			<div>Errors: {error ?? '[none]'}</div>
+			<div>
+				Errors: <span>{error ?? '[none]'}</span>
+			</div>
 
 			<div className={styles.row}>
 				<input

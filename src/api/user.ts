@@ -13,6 +13,13 @@ export interface AuthTokenBody {
 	};
 }
 
+export interface AuthTokenBodyFail {
+	error: {
+		message: string;
+		code: number;
+	};
+}
+
 export const requestToken = async (username: string) => {
 	const response = await fetch(`${url}/users/${username}/token`, {
 		method: 'POST',
