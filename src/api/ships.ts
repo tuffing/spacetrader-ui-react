@@ -1,4 +1,4 @@
-import { url, performRequest } from './api';
+import { performRequest } from './api';
 
 export enum Manufacturer {
 	Electrum = 'Electrum',

@@ -9,13 +9,11 @@ type Props = {
 
 export default function ShipItem({ ship }: Props) {
 	return (
-		<div>
-			<div className={globalStyles.row}>
-				<span className={shipStyles.label}>Type:</span> {ship.type}
-				<span className={shipStyles.label}>Class:</span> {ship.class}
-				<span className={shipStyles.label}>Manufacturer:</span> {ship.manufacturer}
-				<span className={shipStyles.label}>Max Cargo:</span> {ship.maxCargo}
-			</div>
+		<div data-testid="ShipItem" className={globalStyles.row}>
+			<span className={shipStyles.label}>Type:</span> {ship.type}
+			<span className={shipStyles.label}>Class:</span> {ship.class}
+			<span className={shipStyles.label}>Manufacturer:</span> {ship.manufacturer}
+			<span className={shipStyles.label}>Max Cargo:</span> {ship.maxCargo}
 		</div>
 	);
 }

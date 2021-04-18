@@ -8,7 +8,7 @@ export default function AvailableShips() {
 	const availableShips = useSelector((state: RootState) => state.ships.availableShips);
 
 	const renderedListItems = availableShips.map((ship) => {
-		return <ShipItem ship={ship} />;
+		return <ShipItem key={ship.type} ship={ship} />;
 	});
 
 	return (
