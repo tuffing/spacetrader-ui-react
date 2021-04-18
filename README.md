@@ -1,4 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+# Logan's SpaceTraders front end
+
+A (very early) work in progress / arguably over-engineered front end for the [SpaceTrader](https://spacetraders.io/) REST API based game.
+
+SpaceTrader is a fleet management / trading / strategy game accessibly only over RESTful API endpoints.
+
+Bootstrapped from [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
 
