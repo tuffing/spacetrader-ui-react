@@ -4,6 +4,7 @@
 import { rest } from 'msw';
 import { url } from '../api';
 import { authTokenSuccessBody, authTokenErrorUserTakenBody, AuthFailParams } from './responses/user';
+import { routeError404, invalidTokenError401, TokenPresets } from './responses/apiGeneral';
 import { availableShipsSuccessBody } from './responses/ships';
 
 export const handlers = [
@@ -15,6 +16,8 @@ export const handlers = [
 		switch (username) {
 			case AuthFailParams.usernameTaken:
 				return res(ctx.json(authTokenErrorUserTakenBody));
+			case AuthFailParams.usernameEmpty:
+				return res(ctx.status(404), ctx.json(routeError404));
 			default:
 				const response = { ...authTokenSuccessBody };
 				response.user.username = username;
@@ -23,6 +26,14 @@ export const handlers = [
 	}),
 	// ships
 	rest.get(`${url}/game/ships`, async (req, res, ctx) => {
-		return res(ctx.json({ ...availableShipsSuccessBody }));
+		const bearer = req.headers.get('Authorization')?.split(' ')[1] ?? '';
+
+		switch (bearer) {
+			case TokenPresets.invalidToken:
+			case TokenPresets.emptyToken:
+				return res(ctx.status(401), ctx.json(invalidTokenError401));
+			default:
+				return res(ctx.json({ ...availableShipsSuccessBody }));
+		}
 	})
 ];

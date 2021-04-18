@@ -1,8 +1,10 @@
 import { setUserName } from '../../../features/user/userSlice';
-import { AuthTokenBody, AuthTokenBodyFail } from '../../user';
+import { AuthTokenBody } from '../../user';
+import { AuthTokenBodyFail } from '../../api';
 
 export enum AuthFailParams {
-	usernameTaken = 'user-taken'
+	usernameTaken = 'user-taken',
+	usernameEmpty = ''
 }
 
 export const authTokenSuccessBody: AuthTokenBody = {

@@ -11,6 +11,13 @@ export enum Status {
 	failed = 'failed'
 }
 
+export interface AuthTokenBodyFail {
+	error: {
+		message: string;
+		code: number;
+	};
+}
+
 export const performRequest = async (
 	method: 'POST' | 'GET',
 	endpoint: string,

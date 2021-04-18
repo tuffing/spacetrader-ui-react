@@ -18,6 +18,8 @@ export const initialState: UserState = {
 
 // fetch the user token
 export const authenticate = createAsyncThunk('user/authenticate', async (username: string) => {
+	//there is no user/pass in this game. Just first in first serves on usernames.
+	//the token is valid forever.. or until a server reset (weekly as of April 2021)
 	return requestToken(username);
 });
 
