@@ -7,19 +7,27 @@ export enum Status {
 	idle = 'idle',
 	loading = 'loading',
 	succeeded = 'succeeded',
-	failed = 'failed',
+	failed = 'failed'
 }
 
-export const performPostRequest = async (endpoint: string, stringifiedData?: string) => {
-	const response = await fetch(`${url}/${endpoint}`, {
-		method: 'POST',
+export const performRequest = async (
+	method: 'POST' | 'GET',
+	endpoint: string,
+	headers?: HeadersInit,
+	stringifiedData?: string
+) => {
+	const res: RequestInit = {
+		method: method,
 		cache: 'no-cache',
 		credentials: 'same-origin', // include, *same-origin, omit
 		headers: {
 			'Content-Type': 'application/json',
-		},
-		body: stringifiedData,
-	});
+			...headers
+		}
+	};
+	if (stringifiedData) res.body = stringifiedData;
+
+	const response = await fetch(`${url}/${endpoint}`, res);
 
 	return response.json();
 };

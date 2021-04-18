@@ -7,7 +7,11 @@ import { store } from '../../app/store';
 import UserLogin from './UserLogin';
 import { setStatus, setAccessToken } from './userSlice';
 import { Status } from '../../api/api';
-import { AuthTokenSuccessBody, AuthTokenErrorUserTakenBody, AuthFailParams } from '../../api/mockServer/responses/user';
+import {
+	authTokenSuccessBody,
+	authTokenErrorUserTakenBody,
+	AuthFailParams
+} from '../../api/mockServer/responses/user';
 
 describe('User Login Component', () => {
 	beforeEach(() => {
@@ -63,7 +67,7 @@ describe('User Login Component', () => {
 		userEvent.click(screen.getByTestId('LoginSubmit'));
 
 		// @todo replace with something more logical.  in reality the token won't (shouldnt be!) be rendered
-		expect(await screen.findByText(AuthTokenSuccessBody.token)).toBeInTheDocument();
+		expect(await screen.findByText(authTokenSuccessBody.token)).toBeInTheDocument();
 	});
 
 	it('Login Button attempts login but username is taken', async () => {
@@ -75,7 +79,7 @@ describe('User Login Component', () => {
 
 		userEvent.type(screen.getByTestId('UserName'), AuthFailParams.usernameTaken.toString());
 		userEvent.click(screen.getByTestId('LoginSubmit'));
-		expect(await screen.findByText(AuthTokenErrorUserTakenBody.error.message)).toBeInTheDocument();
+		expect(await screen.findByText(authTokenErrorUserTakenBody.error.message)).toBeInTheDocument();
 	});
 
 	// @todo connection error?
