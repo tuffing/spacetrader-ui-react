@@ -7,9 +7,9 @@ import userStyles from './User.module.css';
 import styles from '../../Styles.module.css';
 
 export default function UserLogin() {
-	const token = useSelector((state: RootState) => state.userReducer.token);
-	const error = useSelector((state: RootState) => state.userReducer.error);
-	const status = useSelector((state: RootState) => state.userReducer.status);
+	const token = useSelector((state: RootState) => state.user.token);
+	const error = useSelector((state: RootState) => state.user.error);
+	const status = useSelector((state: RootState) => state.user.status);
 	const dispatch = useDispatch();
 	const [userName, setUserName] = useState('');
 
@@ -27,7 +27,7 @@ export default function UserLogin() {
 			<button
 				data-testid="LoginSubmit"
 				className={styles.button}
-				disabled={!userName || status == Status.loading}
+				disabled={!userName || status === Status.loading}
 				onClick={() => dispatch(authenticate(userName))}
 			>
 				Get Started

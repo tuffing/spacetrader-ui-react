@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux';
 import userStyles from './User.module.css';
 import globalStyles from '../../Styles.module.css';
 
-export function UserPanel() {
-	const username = useSelector((state: RootState) => state.userReducer.username);
-	const credits = useSelector((state: RootState) => state.userReducer.credits);
+export default function UserPanel() {
+	const username = useSelector((state: RootState) => state.user.username);
+	const credits = useSelector((state: RootState) => state.user.credits);
 
 	return (
-		<div className={userStyles.infoPanel}>
+		<div className={[globalStyles.container, userStyles.infoPanel].join(' ')}>
 			<div className={globalStyles.row}>
 				<div className={userStyles.username}>{username}</div>
 				<div className={userStyles.userData} aria-label="Credits">

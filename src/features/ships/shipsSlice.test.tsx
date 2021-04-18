@@ -1,6 +1,4 @@
-import thunk from 'redux-thunk';
 import { initialState } from './shipsSlice';
-import { Ships, Ship } from '../../api/ships';
 import { availableShipsSuccessBody } from '../../api/mockServer/responses/ships';
 
 import shipsReducer, { getAvailableShips, setStatus, setAvailableShips } from './shipsSlice';

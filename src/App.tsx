@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { RootState } from './app/store';
-import logo from './logo.svg';
+import { getAvailableShips } from './features/ships/shipsSlice';
+import { useSelector, useDispatch } from 'react-redux';
 import UserLogin from './features/user/UserLogin';
-import { UserPanel } from './features/user/UserPanel';
+import UserPanel from './features/user/UserPanel';
+import AvailableShips from './features/ships/AvailableShips';
 import styles from './App.module.css';
-import { useSelector } from 'react-redux';
 
 function App() {
-	const token = useSelector((state: RootState) => state.userReducer.token);
+	const dispatch = useDispatch();
+	const token = useSelector((state: RootState) => state.user.token);
+
+	useEffect(() => {
+		if (token) dispatch(getAvailableShips(token));
+	}, [token]);
 
 	if (!token) {
 		return (
@@ -20,6 +26,7 @@ function App() {
 	return (
 		<div className={styles.app}>
 			<UserPanel />
+			<AvailableShips />
 		</div>
 	);
 }

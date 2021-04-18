@@ -4,7 +4,7 @@ import { render } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
 import userEvent from '@testing-library/user-event';
 import { store } from '../../app/store';
-import UserLogin from './UserLogin';
+import { UserLogin } from './UserLogin';
 import { setStatus, setAccessToken } from './userSlice';
 import { Status } from '../../api/api';
 import {

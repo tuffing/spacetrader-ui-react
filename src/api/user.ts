@@ -1,4 +1,4 @@
-import { url, performRequest } from './api';
+import { performRequest } from './api';
 
 export interface AuthTokenBody {
 	token: string;

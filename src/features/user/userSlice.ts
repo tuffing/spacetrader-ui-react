@@ -13,7 +13,7 @@ export interface UserState {
 export const initialState: UserState = {
 	username: '',
 	credits: 0,
-	status: Status.idle,
+	status: Status.idle
 };
 
 // fetch the user token
@@ -37,7 +37,7 @@ export const userSlice = createSlice({
 		},
 		setStatus: (state, action: PayloadAction<Status>) => {
 			state.status = action.payload;
-		},
+		}
 	},
 	extraReducers: (builder) => {
 		builder
@@ -63,7 +63,7 @@ export const userSlice = createSlice({
 				if ('message' in action.error) state.error = action.error.message;
 				else state.error = 'undefined error';
 			});
-	},
+	}
 });
 
 export const { setUserName, setAccessToken, setCredits, setStatus } = userSlice.actions;
